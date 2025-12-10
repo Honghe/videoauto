@@ -1,0 +1,43 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "videoauto"
+version = "0.1.0"
+description = "视频自动剪辑工具"
+readme = "README.md"
+license = {file = "LICENSE"}
+requires-python = ">=3.10"
+authors = [
+    {name = "Honghe"}
+]
+keywords = ["video", "ffmpeg", "srt", "subtitle", "editing", "cuda", "nvenc"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Topic :: Multimedia :: Video",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+]
+
+dependencies = [
+    "srt>=3.5.0",
+]
+
+[project.scripts]
+videoauto = "videoauto.__main__:main"
+videoauto-cutselect = "videoauto.ffmpeg_cut_select:main"
+videoauto-cuttrim = "videoauto.ffmpeg_cut_trim:main"
+videoauto-srt-cutsync = "videoauto.srt_cut_sync:main"
+
+[project.urls]
+Homepage = "https://github.com/honghe/videoauto"
+Repository = "https://github.com/honghe/videoauto"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/videoauto"]
