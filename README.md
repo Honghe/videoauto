@@ -56,6 +56,12 @@ videoauto-srt-cutsync video.srt -o video_cut.srt
 stable-ts "video.mp4"  -fw -m turbo -l zh -y --word_level False --vad True -f srt
 ```
 
+### srt每行头尾时间padding
+
+```bash
+python -m videoauto.srt_padding input.srt --inplace --pad 0.1
+```
+
 ## 原理
 
 1. 解析 SRT 字幕，提取时间片段
