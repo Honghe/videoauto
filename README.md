@@ -48,6 +48,14 @@ videoauto-cutselect video.mp4 --bitrate 15M
 videoauto-srt-cutsync video.srt -o video_cut.srt
 ```
 
+### ASR
+
+使用 stable-ts 配置 faster-whisper，进行快速ASR，同时时间戳对齐。
+
+```bash
+stable-ts "video.mp4"  -fw -m turbo -l zh -y --word_level False --vad True -f srt
+```
+
 ## 原理
 
 1. 解析 SRT 字幕，提取时间片段
