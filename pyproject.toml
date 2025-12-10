@@ -41,3 +41,12 @@ Repository = "https://github.com/honghe/videoauto"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/videoauto"]
+
+[project.optional-dependencies]
+dev = [
+    "build",
+    "twine"
+]
+
+[tool.hatch.publish]
+repository = "pypi"
