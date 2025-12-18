@@ -1,5 +1,6 @@
 """
 为 SRT 字幕每行时间戳头尾加 padding 的工具
+因为 stable-ts 生成的时间戳较紧凑，部分句子边界被截断。
 
 用法：
     python -m videoauto.srt_padding input.srt -o output.srt --pad 0.1
