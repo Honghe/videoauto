@@ -16,6 +16,7 @@ from pydub import AudioSegment, silence
 from datetime import timedelta
 import argparse
 import os
+import io
 import subprocess
 import tempfile
 
@@ -105,8 +106,7 @@ async def srt_to_voice(srt_path, out_path, voice="zh-CN-YunjianNeural"):
     final_audio.export(out_path, format="wav")
     print(f"已保存配音到: {out_path}")
 
-if __name__ == "__main__":
-    import io
+def main():
     parser = argparse.ArgumentParser(description="用 edge-tts 为 SRT 生成配音，自动加速和静音填充")
     parser.add_argument("srt", help="输入 SRT 文件")
     parser.add_argument("-o", "--output", default=None, help="输出音频文件（默认同名 .wav）")
@@ -115,3 +115,6 @@ if __name__ == "__main__":
 
     out_path = args.output or os.path.splitext(args.srt)[0] + ".wav"
     asyncio.run(srt_to_voice(args.srt, out_path, voice=args.voice))
+
+if __name__ == "__main__":
+    main()

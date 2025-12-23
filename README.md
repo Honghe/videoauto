@@ -51,15 +51,34 @@ videoauto-srt-cutsync video.srt -o video_cut.srt
 ### ASR
 
 使用 stable-ts 配置 faster-whisper，进行快速ASR，同时时间戳对齐。
+并使用`--regroup`重新断句。
 
 ```bash
-stable-ts "video.mp4"  -fw -m turbo -l zh -y --word_level False --vad True -f srt
+stable-ts "video.mp4"  -fw -m turbo -l zh -y --word_level False --vad True -f srt --regroup "ms_sp=.* /。/?/？"
 ```
 
 ### srt每行头尾时间padding
 
 ```bash
 python -m videoauto.srt_padding input.srt --inplace --pad 0.1
+```
+
+### 翻译
+
+```bash
+gst translate -i input.srt -l Chinese
+```
+
+### tts
+
+```bash
+python -m videoauto.srt_to_voice input.srt --voice zh-CN-YunjianNeural
+```
+
+### 替换视频音轨
+
+```
+ffmpeg -i video.mp4 -i audio.mp3 -c:v copy -c:a aac -map 0:v:0 -map 1:a:0 output.mp4
 ```
 
 ## 原理
